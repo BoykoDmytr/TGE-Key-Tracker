@@ -67,16 +67,17 @@ export default async function handler(req, res) {
 
     // 3) Тягнемо останні токен-трансфери на адресу
     const qs = new URLSearchParams({
-      module: "account",
-      action: "tokentx",
-      address: watchAddress,
-      page: "1",
-      offset: "50",
-      sort: "desc",
-      apikey: bscKey
+        chainid: "56",                 // BSC
+        module: "account",
+        action: "tokentx",
+        address: watchAddress,
+        page: "1",
+        offset: "50",
+        sort: "desc",
+        apikey: bscKey
     });
 
-    const url = `https://api.bscscan.com/api?${qs.toString()}`;
+    const url = `https://api.etherscan.io/v2/api?${qs.toString()}`;
     const r = await fetch(url);
     const data = await r.json();
 
