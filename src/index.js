@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { WebSocketProvider, getAddress, Interface } from "ethers";
 import { getTokenMetaCached } from "./tokenMeta.js";
 import { sendTelegram } from "./telegram.js";
-import { toTopicAddress } from "./utils.js";
+import { toTopicAddress, includesKey } from "./utils.js";
 import http from "http";
 
 // Fly зазвичай дає PORT=8080
@@ -116,8 +116,8 @@ provider.on(filter, async (logEvent) => {
     const meta = await getTokenMetaCached(provider, tokenAddress);
 
     // Check KEY substring in symbol or name (case-insensitive)
-    //const isKeyLike = includesKey(meta.symbol) || includesKey(meta.name);
-    //if (!isKeyLike) return;
+    const isKeyLike = includesKey(meta.symbol) || includesKey(meta.name);
+    if (!isKeyLike) return;
 
     // Pretty amount
     const amountHuman = meta.decimals != null
