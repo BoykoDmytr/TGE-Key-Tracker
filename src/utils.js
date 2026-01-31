@@ -1,6 +1,6 @@
 //export function includesKey(s) {
-  if (!s) return false;
-  return String(s).toLowerCase().includes("key");
+  //if (!s) return false;
+  //return String(s).toLowerCase().includes("key");
 //}
 
 /**
