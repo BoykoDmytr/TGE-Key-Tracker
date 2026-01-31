@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { WebSocketProvider, getAddress, Interface } from "ethers";
 import { getTokenMetaCached } from "./tokenMeta.js";
 import { sendTelegram } from "./telegram.js";
-import { toTopicAddress, includesKey } from "./utils.js";
+import { toTopicAddress } from "./utils.js";
 import http from "http";
 
 // Fly зазвичай дає PORT=8080
