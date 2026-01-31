@@ -133,8 +133,7 @@ provider.on(filter, async (logEvent) => {
       `To: ${to}\n` +
       `From: ${from}\n` +
       `Amount: ${amountHuman} ${meta.symbol || ""}\n` +
-      `Tx: ${txUrl}\n`
-      `TG: @cryptohornettg`;
+      `Tx: ${txUrl}`;
 
     await sendTelegram({ botToken: TG_BOT_TOKEN, chatId: TG_CHAT_ID, text: msg });
     log("Sent Telegram:", msg);
