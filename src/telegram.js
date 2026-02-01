@@ -1,9 +1,11 @@
 export async function sendTelegram({ botToken, chatId, text }) {
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
   const payload = {
     chat_id: chatId,
     text,
-    disable_web_page_preview: true
+    parse_mode: "HTML",
+    disable_web_page_preview: false
   };
 
   const res = await fetch(url, {
@@ -17,3 +19,4 @@ export async function sendTelegram({ botToken, chatId, text }) {
     throw new Error(`Telegram API error: ${res.status} ${errText}`);
   }
 }
+

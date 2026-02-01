@@ -4,6 +4,7 @@ import { getTokenMetaCached } from "./tokenMeta.js";
 import { sendTelegram } from "./telegram.js";
 import { toTopicAddress, includesKey } from "./utils.js";
 import http from "http";
+import { escapeHtml } from "./utils.js";
 
 // Fly зазвичай дає PORT=8080
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8080;
@@ -125,15 +126,14 @@ provider.on(filter, async (logEvent) => {
       : value.toString();
 
     const txUrl = `${EXPLORER_TX}${logEvent.transactionHash}`;
-
+    const sym = escapeHtml(meta.symbol || "?");
+    const name = escapeHtml(meta.name || "?");
     const msg =
-      `🔑 KEY-like token received\n` +
-      `Token: ${meta.symbol || "?"} (${meta.name || "?"})\n` +
-      `Contract: ${tokenAddress}\n` +
-      `To: ${to}\n` +
-      `From: ${from}\n` +
-      `Amount: ${amountHuman} ${meta.symbol || ""}\n` +
-      `Tx: ${txUrl}`;
+  `🔑 <b>NEW KEY token received</b>\n` +
+  `Token: ${sym} (${name})\n\n` +
+  `<a href="${txUrl}">BscScan</a>\n\n` +
+  `Created by <a href="https://t.me/cryptohornettg">@cryptohornettg</a>`;
+
 
     await sendTelegram({ botToken: TG_BOT_TOKEN, chatId: TG_CHAT_ID, text: msg });
     log("Sent Telegram:", msg);

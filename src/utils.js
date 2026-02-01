@@ -11,3 +11,10 @@ export function toTopicAddress(address) {
   const a = address.toLowerCase().replace(/^0x/, "");
   return "0x" + a.padStart(64, "0");
 }
+
+export function escapeHtml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
