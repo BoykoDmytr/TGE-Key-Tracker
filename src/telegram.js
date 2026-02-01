@@ -19,4 +19,3 @@ export async function sendTelegram({ botToken, chatId, text }) {
     throw new Error(`Telegram API error: ${res.status} ${errText}`);
   }
 }
-

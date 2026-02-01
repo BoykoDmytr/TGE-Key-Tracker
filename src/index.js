@@ -125,14 +125,19 @@ provider.on(filter, async (logEvent) => {
       ? formatUnitsBigInt(value, meta.decimals)
       : value.toString();
 
-    const txUrl = `${EXPLORER_TX}${logEvent.transactionHash}`;
     const sym = escapeHtml(meta.symbol || "?");
     const name = escapeHtml(meta.name || "?");
+
+    const txUrl = `${EXPLORER_TX}${logEvent.transactionHash}`;
+    const toAddr = to; // у тебе вже checksum address
+
     const msg =
-  `🔑 <b>NEW KEY token received</b>\n` +
-  `Token: ${sym} (${name})\n\n` +
-  `<a href="${txUrl}">BscScan</a>\n\n` +
-  `Created by <a href="https://t.me/cryptohornettg">@cryptohornettg</a>`;
+      `🔑 <b>NEW KEY token received</b>\n` +
+      `Token: ${sym} (${name})\n` +
+      `To: <code>${toAddr}</code>\n` +
+      `BscScan (<a href="${txUrl}">${txUrl}</a>)\n\n` +
+      `Created by @cryptohornettg (<a href="https://t.me/cryptohornettg">https://t.me/cryptohornettg</a>)`;
+
 
 
     await sendTelegram({ botToken: TG_BOT_TOKEN, chatId: TG_CHAT_ID, text: msg });

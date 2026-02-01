@@ -18,3 +18,4 @@ export function escapeHtml(s) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
 }
+
