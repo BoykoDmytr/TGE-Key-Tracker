@@ -132,11 +132,11 @@ provider.on(filter, async (logEvent) => {
     const toAddr = to; // у тебе вже checksum address
 
     const msg =
-      `🔑 <b>NEW KEY token received</b>\n` +
-      `Token: ${sym} (${name})\n` +
-      `To: <code>${toAddr}</code>\n` +
-      `BscScan (<a href="${txUrl}">${txUrl}</a>)\n\n` +
-      `Created by @cryptohornettg (<a href="https://t.me/cryptohornettg">https://t.me/cryptohornettg</a>)`;
+    `🔑 <b>NEW KEY token received</b>\n` +
+    `Token: ${sym} (${name})\n` +
+    `To: <code>${toAddr}</code>\n` +
+    `<a href="${txUrl}">BscScan</a>\n\n` +
+    `Created by <a href="https://t.me/cryptohornettg">@cryptohornettg</a>`;
 
 
 
